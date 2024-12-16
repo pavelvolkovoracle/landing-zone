@@ -1,0 +1,91 @@
+title: Test Landing Zone 0.1.4
+description: Test Minimal LZ Package
+schemaVersion: 1.0.0
+version: "1.0.0"
+locale: en
+variableGroups:
+  - title: Provider Variables
+    visible: false
+    variables:
+      - api_fingerprint
+      - api_private_key_path
+      - api_private_key
+      - region
+      - tenancy_ocid
+      - current_user_ocid
+  - title: Test Variables
+    visible: true
+    variables:
+      - compartment_ocid
+      - test_name
+      - additional_buckets
+      - bucket_type
+      - create_test_compartment
+      - compartment_replication_delay
+
+
+variables:
+  #Provider Variables
+  api_fingerprint:
+    type: string
+    description: The fingerprint of API
+    default: "Value not required in Oracle Resource Manager."
+    title: Api Fingerprint
+  api_private_key_path:
+    type: string
+    description: The local path to the API private key
+    default: "Value not required in Oracle Resource Manager."
+    title: Api Private Key Path
+  region:
+    type: string
+    description: the OCI region LZ is deployed to.
+    title: Region
+    required: true
+  tenancy_ocid:
+    type: string
+    description: The OCID of tenancy
+    title: Tenancy OCID
+  current_user_ocid:
+    type: string
+    description: OCID of the current user
+    title: Current User OCID
+
+  # Test variables
+  test_name:
+    type: string
+    description: "The name prefix for test resources"
+    required: true
+    title: Test Resouce Name Prefix
+  compartment_replication_delay:
+    type: number
+    description: "Delay to sleep after compartment creation."
+    required: true
+    default: 90
+    title: Compartment Replication Delay
+  compartment_ocid:
+    type: string
+    description: "Compartment to create test resources under (defaults to tenancy root)"
+    title: Compartment to create resources in
+    default: ""
+  create_test_compartment:
+    type: boolean
+    description: "Create test compartment?"
+    title: "Create a test compartment?"
+    default: false
+  additional_buckets:
+    type: array
+    items:
+      type: string
+    description: "List of names of additional buckets to create."
+    title: "Additional bucket names"
+  bucket_type:
+    type: enum
+    description: "Storage type for buckets"
+    enum:
+      - "Standard"
+      - "Archive"
+    required: true
+    default: "Standard"
+    title: Bucket Type
+
+
